@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:derby://127.0.0.1:1527/menudb
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 5000
+    driver-class-name: org.apache.derby.jdbc.ClientDriver

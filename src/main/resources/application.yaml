@@ -1,0 +1,73 @@
+spring:
+  banner:
+    image:
+      location: resources/static/banner.txt
+  main:
+    log-startup-info: false
+    lazy-initialization: true
+  application:
+    admin:
+      enabled: false
+  profiles:
+    active: prod,test
+  output:
+    ansi:
+      enabled: ALWAYS
+#  http:
+#    converters:
+#      preferred-json-mapper: gson
+  jdbc:
+    template:
+      max-rows: 100
+  jmx:
+    enabled: true
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 5
+
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: "*"
+    web:
+      exposure:
+        include: health,info,mappings,env,beans
+        exclude: threaddump
+      base-path: /actuator
+    enabled-by-default: true
+    shutdown:
+      enabled: false
+    health:
+      show-details: ALWAYS
+
+logging:
+  group:
+    libs: org.springframework,org.apache
+    app: me_4vr.menuapp
+  file:
+    name: demo.log
+    path: ./logs
+  level:
+    root: warn
+    libs: error
+    web: warn
+    sql: debug
+    app: info
+
+server:
+  port: 8080
+  tomcat:
+    accesslog:
+      enabled: true
+  error:
+    include-stacktrace: never
+
+app:
+  dbURL: bjadhjahdjs
+  sessionTimeout: 15s
+  maxSize: 1MB
