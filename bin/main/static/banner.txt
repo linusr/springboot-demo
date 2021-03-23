@@ -1,1 +1,0 @@
-Demo Application ${application.version} / ${spring-boot.version}
