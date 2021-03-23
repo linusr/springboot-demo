@@ -12,7 +12,7 @@ import org.springframework.data.jdbc.repository.config.MyBatisJdbcConfiguration;
 // @EnableCaching
 @EnableJdbcRepositories
 @ConfigurationPropertiesScan
-@Import(MyBatisJdbcConfiguration.class)
+@Import({MyBatisJdbcConfiguration.class, MyBatisConfig.class})
 @MapperScan("me_4vr.menuapp.mapper")
 @SpringBootApplication//(exclude = {JacksonAutoConfiguration.class})
 public class Application {
