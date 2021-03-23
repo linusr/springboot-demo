@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:derby://127.0.0.1:1527/menudb
+    url: jdbc:derby://127.0.0.1:1527/menudb;create=true
     hikari:
       maximum-pool-size: 5
       connection-timeout: 5000

@@ -1,18 +1,21 @@
 plugins {
 	id 'org.springframework.boot' version '2.2.6.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
 group = 'me_4vr'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = 15
 
 configurations {
 	developmentOnly
 	runtimeClasspath {
 		extendsFrom developmentOnly
 	}
+	all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 repositories {
@@ -24,8 +27,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
+	implementation 'com.lmax:disruptor:3.4.2'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2'
+	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4'
 //	compile 'com.google.code.gson:gson'
 	testRuntimeOnly 'org.hsqldb:hsqldb'
 	runtime 'org.apache.derby:derbyclient:10.14.2.0'
@@ -49,6 +55,7 @@ test {
 
 bootRun {
 	bootRun.systemProperty 'spring.profiles.active', "prod"
+	bootRun.systemProperty 'log4j2.contextSelector', "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector"
 }
 
 defaultTasks 'test'
